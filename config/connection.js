@@ -7,17 +7,17 @@ if (process.env.JAWSDB_URL){
     connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: '*',
+        password: '1Gumbo@cash2!',
         database: 'burgers_db'
     });
 };
 
 // -- Connect to the data base and handle connection error
-connection.connection((err) =>{
+connection.connect((err) =>{
     if(err){
         console.error('Error connecting: ' + err.stack);
     }
     console.log('Connected as id ' + connection.threadId);
 });
 
-module.expots = connection;
+module.exports = connection;

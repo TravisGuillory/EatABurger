@@ -1,0 +1,43 @@
+<div class="jumbotron text-center">
+            <h1 id="mainTitle">Eat The Burger</h1>
+            <p>Create burgers and Devour burgers.</p>
+        </div>
+    <div class="container">
+        <div class="row">
+           <div class="col text-center">
+            <h2>Enter the burger to create</h2>  
+            <form  class="submit-form">
+                <label for="newBurgerText" id="newBurgerLabel">New Burger:</label>            
+                <input type="text" id="newBurgerText">
+                <button type="submit" class="btn btn-success" id="newBurgerButton">Submit</button>
+            </form>
+           </div>
+        </div>
+     <div class="row text-center">
+         <!-- Undevoured -->
+         <div class="col-sm-6">
+             <div class="panel panel-default" id="undevouredPanel">
+                 <div class="panel-heading" id="undevouredPanelHeading">Choose a Burger to Eat</div>
+                 <div class="panel-body">
+                     <ul id="undevouredList">
+                            {{#each burgers}}
+                                {{unless devoured}}
+                                {{this.id}} {{this.burger_name}}
+                                <button type="button" class="eatBurgerButton btn-success" data-id="{{tis.id}}" ></button>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+         <!-- Devoured -->
+         <div class="col-sm-6">
+            <div class="panel" id="devouredPanel">
+                <div class="panel-heading" id="devouredPanelHeading">Devoured Burgers</div>
+                <div class="panel-body">
+                    <ul id="devouredList">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+     
+   </div>
