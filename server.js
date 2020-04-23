@@ -13,16 +13,16 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
-app.set('view-engine', 'handlebars');
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
 // --Set import for routes
 
-const routes = require("./controllers/burgers_controller.js");
+const routes = require('./controllers/burgers_controller.js');
 
 app.use(routes);
 
 app.listen(PORT, function() {
-    console.log("Server is listening on http://localhost:" + PORT);
+    console.log('Server is listening on http://localhost:' + PORT);
 });
 

@@ -1,10 +1,10 @@
 // Front end js for web views
 $(function () {
 
-    $('.create-form').on('submit', (event) => {
+    $('.submit-form').on('submit', (event) => {
         event.preventDefault();
         var newBurger = {
-            burger_name: $('#newBurger').val().trim(),
+            burger_name: $('#newBurgerText').val().trim(),
             devoured: 0
         };
         // Send an INSERT request
@@ -15,14 +15,17 @@ $(function () {
             console.log('Added a new burger');
             location.reload();
         });
+        console.log(newBurger);
     });
 
-    $('.eatBurger').on('click', (event) =>{
+    $('.orderButton').on('click', function(event) {
         event.preventDefault();
+        console.log('Order Button Clicked');
         var id = $(this).data('id');
         var devouredState = {
             devoured: 1
         };
+        console.log(id);
         // Send an UPDATE request
         $.ajax('/api/burgers/' + id, {
             type: "PUT",
@@ -33,15 +36,17 @@ $(function () {
         });
     });
     
-    $('.trashBurger').on('click', (event) =>{
+    $('.eatButton').on('click', function(event){
         event.preventDefault();
+        console.log('Eat Me');
         var id = $(this).data('id');
+        console.log(id);
         // Send a DELETE request
         $.ajax({
             type: "DELETE",
-            url: "/api/burgers" + id
+            url: "/api/burgers/" + id
         }).then(
-            location.reload()
+           location.reload()
         );
     });
 

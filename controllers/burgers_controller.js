@@ -1,51 +1,52 @@
 var express = require("express");
-var burger = require("../models/burger");
+var burger = require("../models/burger.js");
 
-const router = express.Router();
+var router = express.Router();
 
+router.get("/", function(req, res) {
+  burger.selectAll(function(data) {
+    var handlebarssObj = {
+      burgers: data
+    };
+    console.log(handlebarssObj);
+    res.render("index", handlebarssObj);
+  });
 
-router.get('/', (req, res) => {
-    burger.selectAll((data) => {
-        var handlebarsObj = {
-            burgers: data
-        };
-        console.log(handlebarsObj);
-        res.render('index', handlebarsObj);
-    });
-});
-
-router.post('/api/burgers', (req, res) => {
+  router.post("/api/burgers", function(req, res) {
     burger.insertOne(
-        ['burger_name', 'devoured'], [req.body.burger_name, req.body.devoured], (result) => {
-            // -- Send back the ID of the new burger
-            res.json({
-                id: result.insertId
-            });
-        }
-
+      ["burger_name", "devoured"],
+      [req.body.burger_name, req.body.devoured],
+      function(result) {
+        // Send back the ID of new burger
+        res.json({ id: result.insertId });
+      }
     );
-});
-router.put('api/burgers/:id', (req, res) => {
-    var condition = 'id = ' + req.params.id;
-    console.log("condition", condition);
-    burger.updateOne({
-        devoured: req.body.devoured
-    }, condition, (result) => {
-        if (result.changedRows === 0) {
-            return res.status(404).end();
-        }
-    });
-});
-router.delete('/api/burgers/:id', (req, res) => {
+  });
+  router.put("/api/burgers/:id", function(req, res) {
     var condition = "id = " + req.params.id;
-    console.log('condtion ', condition);
-    burger.deleteOne(condition, (result) => {
-        if (result.changedRows === 0) {
-            return res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
-    });
-});
 
+    console.log("condition", condition);
+    burger.updateOne({ devoured: req.body.devoured }, condition, 
+        function(result) {
+      if (result.changedRows === 0) {
+        //-- If no rows changed, id was not found. Status 404
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+  });
+  router.delete("/api/burgers/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+    console.log("condition", condition);
+
+    burger.deleteOne(condition, function(result) {
+      if (result.changedRows === 0) {
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+  });
+});
 module.exports = router;
