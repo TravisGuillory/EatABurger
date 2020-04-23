@@ -1,1 +1,30 @@
  /* css styling for web views */
+
+ body{
+     background-color: rgba(227, 66, 52);
+ }
+
+ 
+
+ .jumbotron{
+    background-image: url("/assets/burgerPhoto.jpg");
+    background-color: rgba(255, 255, 255, 0.6);
+    background-blend-mode: lighten;
+    background-size: auto;
+    overflow: auto;
+}
+
+
+.jumbotron h1, p {
+    
+    font-weight: bold;
+    color: rgb(255, 0, 0)
+    
+}
+
+#undevouredPanel, #devouredPanel{
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 25px;
+    color: rgb(255,255,255);
+}
+
