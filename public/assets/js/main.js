@@ -1,8 +1,9 @@
 // Front end js for web views
 $(function () {
 
-    $('.submit-form').on('submit', (event) => {
+    $('.submit-form').on('submit', function(event) {
         event.preventDefault();
+        console.log("sdfg df gsdfg sdfg ");
         var newBurger = {
             burger_name: $('#newBurgerText').val().trim(),
             devoured: 0
@@ -49,5 +50,7 @@ $(function () {
            location.reload()
         );
     });
+
+   
 
 });
