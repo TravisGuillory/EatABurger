@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 
 var app = express();
-const PORT = process.env.PORt || 3000;
+const PORT = process.env.PORT || 3000;
 
 // -- Static file served from the public directory
 app.use(express.static('public'));
